@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class GuardSoundController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private AudioClip _carpetSound;
+    private AudioSource _source;
+
+    private void Awake()
     {
-        
+        _source = GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void TriggerWalkSound()
     {
-        
+        _source.PlayOneShot(_carpetSound);
     }
 }

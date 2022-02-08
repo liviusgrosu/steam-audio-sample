@@ -32,7 +32,6 @@ public class GuardMovement : MonoBehaviour
     {
         // Set the blend tree movement animation for the animator
         _animator.SetFloat("speedPercent", _agent.velocity.magnitude / _speed);
-        Debug.Log(_agent.velocity.magnitude / _speed);
 
         if (Vector3.Distance(transform.position, _agent.destination) <= 0.1f)
         {

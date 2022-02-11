@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     public float lookXLimit = 45.0f;
 
     CharacterController characterController;
+    [SerializeField] private MenuController _menuController;
     Vector3 moveDirection = Vector3.zero;
     float rotationX = 0;
 
@@ -24,10 +25,6 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         characterController = GetComponent<CharacterController>();
-
-        // Lock cursor
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
     }
 
     void Update()
@@ -63,7 +60,7 @@ public class PlayerController : MonoBehaviour
         characterController.Move(moveDirection * Time.deltaTime);
 
         // Player and Camera rotation
-        if (canMove)
+        if (canMove && !_menuController.IsUsing)
         {
             rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;
             rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
